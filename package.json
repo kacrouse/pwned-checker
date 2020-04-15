@@ -4,6 +4,7 @@
   "description": "An interface for the Have I Been Pwned API.",
   "scripts": {
     "start": "node server",
+    "build": "cd client/ && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kyle Crouse",
