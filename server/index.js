@@ -1,18 +1,32 @@
-const express = require('express');
-const path = require('path');
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-app.get('/api', function (req, res) {
-  res.set('Content-Type', 'application/json');
-  res.send('{"message":"Hello from the custom server!"}');
-});
+app.get(
+  "/hibp/*",
+  (req, res, next) => {
+    req.headers["hibp-api-key"] = process.env.HIBP_KEY;
+    next();
+  },
+  createProxyMiddleware({
+    target: "https://haveibeenpwned.com/api/v3",
+    pathRewrite: {
+      "^/hibp": "",
+    },
+    changeOrigin: true,
+    // don't verify SSL certs
+    secure: false,
+  })
+);
 
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
 app.listen(PORT, function () {

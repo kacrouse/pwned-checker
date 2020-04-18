@@ -15,7 +15,8 @@
     "client/node_modules"
   ],
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.3"
   },
   "devDependencies": {
     "concurrently": "^5.1.0"
