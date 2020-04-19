@@ -12,6 +12,7 @@ app.get(
   "/hibp/*",
   (req, res, next) => {
     req.headers["hibp-api-key"] = process.env.HIBP_KEY;
+    req.headers["user-agent"] = "kcrouse-gntc";
     next();
   },
   createProxyMiddleware({
