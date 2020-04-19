@@ -5,6 +5,9 @@ const fetchBreaches = async (account) => {
     )}?truncateResponse=false`,
     { headers: { Accept: "application/json" } }
   );
+  if (response.status === 404) {
+    return [];
+  }
   return response.json();
 };
 
@@ -13,6 +16,9 @@ const fetchPastes = async (account) => {
     `/hibp/pasteaccount/${encodeURIComponent(account)}`,
     { headers: { Accept: "application/json" } }
   );
+  if (response.status === 404) {
+    return [];
+  }
   return response.json();
 };
 
