@@ -4,7 +4,7 @@
   "description": "An interface for the Have I Been Pwned API.",
   "scripts": {
     "start": "node server",
-    "start:dev": "concurrently \"npm start\" \"cd client && npm start\"",
+    "start:local": "concurrently \"node -r ./config.js server\" \"cd client && npm start\"",
     "build": "cd client/ && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
