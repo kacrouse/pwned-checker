@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import { fetchBreaches, fetchPastes, fetchPwnedPasswords } from "./api/hibp";
-import {
-  Button,
-  ControlGroup,
-  InputGroup,
-  HTMLSelect,
-} from "@blueprintjs/core";
 import Breach from "./Breach";
 import Paste from "./Paste";
+import SearchInput from "./SearchInput";
 
 function App() {
-  const [searchType, setSearchType] = useState("account");
-  const [searchValue, setSearchValue] = useState("");
   const [breaches, setBreaches] = useState([]);
   const [pastes, setPastes] = useState([]);
   const [passwordPwnCount, setPasswordPwnCount] = useState();
-  const search = async () => {
+  const search = async ({searchType, searchValue}) => {
     setBreaches([]);
     setPastes([]);
     setPasswordPwnCount();
@@ -34,24 +27,7 @@ function App() {
   return (
     <div className="App">
       <div className="input">
-        <ControlGroup>
-          <HTMLSelect
-            value={searchType}
-            onChange={(evt) => setSearchType(evt.target.value)}
-            large={true}
-          >
-            <option value="account">Email or Username</option>
-            <option value="password">Password</option>
-          </HTMLSelect>
-          <InputGroup
-            type={searchType === "password" ? "password" : "text"}
-            value={searchValue}
-            onChange={(evt) => setSearchValue(evt.target.value)}
-            large={true}
-            fill={true}
-          />
-          <Button icon="arrow-right" onClick={search} />
-        </ControlGroup>
+        <SearchInput handleSearch={search}/>
       </div>
       <div>
         <section>
