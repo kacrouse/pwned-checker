@@ -24,9 +24,6 @@ const fetchPwnedPasswords = async (password) => {
   );
   const resultText = await response.text();
   const result = resultText.split("\n").find((result) => {
-    const passwordHashUpper = passwordHash.toUpperCase();
-    const resultPasswordUpper = result.split(":")[0].toUpperCase();
-    const match = passwordHashUpper.endsWith(resultPasswordUpper);
     return passwordHash.toLowerCase().endsWith(result.split(":")[0].toLowerCase());
   });
   return result ? parseInt(result.split(":")[1]) : 0;
