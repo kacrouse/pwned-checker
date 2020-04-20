@@ -9,12 +9,16 @@ import {
 export default function SearchInput({handleSearch}) {
   const [searchType, setSearchType] = useState("account");
   const [searchValue, setSearchValue] = useState("");
+  const handleSearchTypeChange = (newValue) => {
+    setSearchType(newValue);
+    setSearchValue('');
+  }
 
   return (
     <ControlGroup>
       <HTMLSelect
         value={searchType}
-        onChange={(evt) => setSearchType(evt.target.value)}
+        onChange={(evt) => handleSearchTypeChange(evt.target.value)}
         large={true}
       >
         <option value="account">Email</option>
