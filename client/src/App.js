@@ -50,12 +50,16 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="content">
-        <SearchInput handleSearch={search} />
-        <div className="results">{resultMarkup}</div>
+    <main>
+      <h1>Has your data been exposed in any breaches? 😱</h1>
+      <p>Type your email or password in the box below to find out. None of your info will be stored, promise.</p> 
+      <div className="App">
+        <div className="content">
+          <SearchInput handleSearch={search} />
+          <div className="results">{resultMarkup}</div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 

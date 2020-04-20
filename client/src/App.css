@@ -1,6 +1,8 @@
 .App {
   display: flex;
   justify-content: center;
+}
+main {
   padding: 20px;
 }
 .content {
@@ -16,6 +18,7 @@
     flex: 0.6;
   }
 }
-.results, .breachDetail {
+.results,
+.breachDetail {
   padding: 10px 0;
 }
