@@ -10,14 +10,8 @@ import { IconNames } from "@blueprintjs/icons";
 import { AppToaster } from "./AppToaster";
 
 function App() {
-  const [breaches, setBreaches] = useState([]);
-  const [pastes, setPastes] = useState([]);
-  const [passwordPwnCount, setPasswordPwnCount] = useState();
   const [resultMarkup, setResultMarkup] = useState(null);
   const search = async ({ searchType, searchValue }) => {
-    setBreaches([]);
-    setPastes([]);
-    setPasswordPwnCount();
     if (searchType === "account") {
       let breaches;
       let pastes;
@@ -32,8 +26,6 @@ function App() {
         });
         return;
       }
-      setBreaches(breaches);
-      setPastes(pastes);
       setResultMarkup(
         <div>
           <ExposureSummary breaches={breaches} pastes={pastes} />
@@ -52,7 +44,6 @@ function App() {
         });
         return;
       }
-      setPasswordPwnCount(pwnCount);
       setResultMarkup(<PasswordExposureSummary pwnCount={pwnCount}/>);
     }
   };
