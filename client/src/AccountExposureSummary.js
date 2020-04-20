@@ -32,9 +32,7 @@ export default function AccountExposureSummary({ breaches, pastes }) {
           tooltip="Often when online services are compromised, the first signs of it
               appear on 'paste' sites like Pastebin. Attackers frequently
               publish either samples or complete dumps of compromised data on
-              these services. Monitoring and reporting on the presence of email
-              addresses on the likes of Pastebin can give impacted users a head
-              start on mitigating the potential fallout from a breach."
+              these services."
         />
         .
       </p>
