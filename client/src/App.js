@@ -4,12 +4,14 @@ import { fetchBreaches, fetchPastes, fetchPwnedPasswords } from "./api/hibp";
 import Breach from "./Breach";
 import Paste from "./Paste";
 import SearchInput from "./SearchInput";
+import ExposureSummary from "./ExposureSummary";
 
 function App() {
   const [breaches, setBreaches] = useState([]);
   const [pastes, setPastes] = useState([]);
   const [passwordPwnCount, setPasswordPwnCount] = useState();
-  const search = async ({searchType, searchValue}) => {
+  const [resultMarkup, setResultMarkup] = useState(null);
+  const search = async ({ searchType, searchValue }) => {
     setBreaches([]);
     setPastes([]);
     setPasswordPwnCount();
@@ -18,6 +20,29 @@ function App() {
       const pastes = await fetchPastes(searchValue);
       setBreaches(breaches);
       setPastes(pastes);
+      setResultMarkup(
+        <div>
+          <ExposureSummary breaches={breaches} pastes={pastes} />
+          <section>
+            <ul className="bp3-list-unstyled">
+              {breaches.map((breach) => (
+                <li key={breach.Name}>
+                  <Breach props={breach} />
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <ul className="bp3-list-unstyled">
+              {pastes.map((paste) => (
+                <li key={paste.Id}>
+                  <Paste props={paste} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      );
     } else if (searchType === "password") {
       const pwnCount = await fetchPwnedPasswords(searchValue);
       setPasswordPwnCount(pwnCount);
@@ -27,29 +52,9 @@ function App() {
   return (
     <div className="App">
       <div className="input">
-        <SearchInput handleSearch={search}/>
+        <SearchInput handleSearch={search} />
       </div>
-      <div>
-        <section>
-          <ul className="bp3-list-unstyled">
-            {breaches.map((breach) => (
-              <li key={breach.Name}>
-                <Breach props={breach} />
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <ul className="bp3-list-unstyled">
-            {pastes.map((paste) => (
-              <li key={paste.Id}>
-                <Paste props={paste} />
-              </li>
-            ))}
-          </ul>
-        </section>
-        <h1 className="bp3-heading">{passwordMessage(passwordPwnCount)}</h1>
-      </div>
+      <div>{resultMarkup}</div>
     </div>
   );
 }
