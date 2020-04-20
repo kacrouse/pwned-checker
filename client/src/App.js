@@ -22,10 +22,7 @@ function App() {
           <div>
             <AccountExposureSummary breaches={breaches} pastes={pastes} />
             <div className="breachDetail">
-              <AccountExposureDetail
-                breaches={breaches}
-                pastes={pastes}
-              />
+              <AccountExposureDetail breaches={breaches} pastes={pastes} />
             </div>
           </div>
         );
@@ -44,14 +41,20 @@ function App() {
   };
 
   return (
-    <main>
-      <h1>Has your data been exposed in any breaches? <span role="img" aria-label="scared face">😱</span></h1>
-      <p>Type your email or password in the box below to find out. None of your info will be stored, promise.</p> 
-      <div className="App">
-        <div className="content">
-          <SearchInput handleSearch={search} showSpinner={showSpinner}/>
-          <div className="results">{resultMarkup}</div>
-        </div>
+    <main className="App">
+      <div className="content">
+        <h1>
+          Has your data been exposed in any breaches?{" "}
+          <span role="img" aria-label="scared face">
+            😱
+          </span>
+        </h1>
+        <p>
+          Type your email or password in the box below to find out. None of your
+          info will be stored, promise.
+        </p>
+        <SearchInput handleSearch={search} showSpinner={showSpinner} />
+        <div className="results">{resultMarkup}</div>
       </div>
     </main>
   );
@@ -63,6 +66,6 @@ const showError = (message) => {
     intent: Intent.DANGER,
     icon: IconNames.WARNING_SIGN,
   });
-}
+};
 
 export default App;
