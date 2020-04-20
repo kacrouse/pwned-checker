@@ -10,15 +10,6 @@ export default function Breach({ props }) {
         <h4 className="bp3-heading">{props.Title}</h4>
       </div>
       <Collapse isOpen={isOpen}>
-        {props.Domain ? (
-          <img
-            height="100px"
-            src={props.LogoPath}
-            alt={`logo for ${props.Domain}`}
-          />
-        ) : (
-          ""
-        )}
         <p>{props.Domain}</p>
         <p
           dangerouslySetInnerHTML={{
