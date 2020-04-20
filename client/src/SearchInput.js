@@ -6,13 +6,13 @@ import {
   HTMLSelect,
 } from "@blueprintjs/core";
 
-export default function SearchInput({handleSearch}) {
+export default function SearchInput({ handleSearch }) {
   const [searchType, setSearchType] = useState("account");
   const [searchValue, setSearchValue] = useState("");
   const handleSearchTypeChange = (newValue) => {
     setSearchType(newValue);
-    setSearchValue('');
-  }
+    setSearchValue("");
+  };
 
   return (
     <ControlGroup>
@@ -31,7 +31,11 @@ export default function SearchInput({handleSearch}) {
         large={true}
         fill={true}
       />
-      <Button icon="arrow-right" disabled={!searchValue} onClick={() => handleSearch({searchType, searchValue})} />
+      <Button
+        icon="arrow-right"
+        disabled={!searchValue}
+        onClick={() => handleSearch({ searchType, searchValue })}
+      />
     </ControlGroup>
   );
 }
