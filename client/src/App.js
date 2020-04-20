@@ -3,6 +3,7 @@ import "./App.css";
 import { fetchBreaches, fetchPastes, fetchPwnedPasswords } from "./api/hibp";
 import SearchInput from "./SearchInput";
 import ExposureSummary from "./ExposureSummary";
+import PasswordExposureSummary from "./PasswordExposureSummary";
 import AccountExposureDetail from "./AccountExposureDetail";
 import { Intent } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
@@ -52,6 +53,7 @@ function App() {
         return;
       }
       setPasswordPwnCount(pwnCount);
+      setResultMarkup(<PasswordExposureSummary pwnCount={pwnCount}/>);
     }
   };
 
@@ -63,15 +65,6 @@ function App() {
       <div>{resultMarkup}</div>
     </div>
   );
-}
-
-function passwordMessage(pwnCount) {
-  if (pwnCount === undefined) {
-    return null;
-  }
-  return pwnCount > 0
-    ? `Probably best to stop using that one. It's been found in ${pwnCount} breaches.`
-    : "Nice! This one hasn't been found in any breaches... yet.";
 }
 
 export default App;
