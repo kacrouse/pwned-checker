@@ -13,38 +13,33 @@ function App() {
   const [resultMarkup, setResultMarkup] = useState(null);
   const search = async ({ searchType, searchValue }) => {
     if (searchType === "account") {
-      let breaches;
-      let pastes;
       try {
-        breaches = await fetchBreaches(searchValue);
-        pastes = await fetchPastes(searchValue);
+        const breaches = await fetchBreaches(searchValue);
+        const pastes = await fetchPastes(searchValue);
+        setResultMarkup(
+          <div>
+            <ExposureSummary breaches={breaches} pastes={pastes} />
+            <AccountExposureDetail breaches={breaches} pastes={pastes} />
+          </div>
+        );
       } catch (error) {
         AppToaster.show({
           message: `Error: ${error.message}`,
           intent: Intent.DANGER,
           icon: IconNames.WARNING_SIGN,
         });
-        return;
       }
-      setResultMarkup(
-        <div>
-          <ExposureSummary breaches={breaches} pastes={pastes} />
-          <AccountExposureDetail breaches={breaches} pastes={pastes} />
-        </div>
-      );
     } else if (searchType === "password") {
-      let pwnCount;
       try {
-        pwnCount = await fetchPwnedPasswords(searchValue);
+        const pwnCount = await fetchPwnedPasswords(searchValue);
+        setResultMarkup(<PasswordExposureSummary pwnCount={pwnCount} />);
       } catch (error) {
         AppToaster.show({
           message: `Error: ${error.message}`,
           intent: Intent.DANGER,
           icon: IconNames.WARNING_SIGN,
         });
-        return;
       }
-      setResultMarkup(<PasswordExposureSummary pwnCount={pwnCount}/>);
     }
   };
 
