@@ -5,6 +5,9 @@ import Breach from "./Breach";
 import Paste from "./Paste";
 import SearchInput from "./SearchInput";
 import ExposureSummary from "./ExposureSummary";
+import { Intent } from "@blueprintjs/core";
+import { IconNames } from "@blueprintjs/icons";
+import { AppToaster } from "./AppToaster";
 
 function App() {
   const [breaches, setBreaches] = useState([]);
@@ -16,8 +19,19 @@ function App() {
     setPastes([]);
     setPasswordPwnCount();
     if (searchType === "account") {
-      const breaches = await fetchBreaches(searchValue);
-      const pastes = await fetchPastes(searchValue);
+      let breaches;
+      let pastes;
+      try {
+        breaches = await fetchBreaches(searchValue);
+        pastes = await fetchPastes(searchValue);
+      } catch (error) {
+        AppToaster.show({
+          message: `Error: ${error.message}`,
+          intent: Intent.DANGER,
+          icon: IconNames.WARNING_SIGN,
+        });
+        return;
+      }
       setBreaches(breaches);
       setPastes(pastes);
       setResultMarkup(
@@ -44,7 +58,17 @@ function App() {
         </div>
       );
     } else if (searchType === "password") {
-      const pwnCount = await fetchPwnedPasswords(searchValue);
+      let pwnCount = await fetchPwnedPasswords(searchValue);
+      try {
+        pwnCount = await fetchPwnedPasswords(searchValue);
+      } catch (error) {
+        AppToaster.show({
+          message: `Error: ${error.message}`,
+          intent: Intent.DANGER,
+          icon: IconNames.WARNING_SIGN,
+        });
+        return;
+      }
       setPasswordPwnCount(pwnCount);
     }
   };

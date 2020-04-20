@@ -8,6 +8,9 @@ const fetchBreaches = async (account) => {
   if (response.status === 404) {
     return [];
   }
+  if (!response.ok) {
+    throw Error(await response.text());
+  }
   return response.json();
 };
 
@@ -19,6 +22,9 @@ const fetchPastes = async (account) => {
   if (response.status === 404) {
     return [];
   }
+  if (!response.ok) {
+    throw Error(await response.text());
+  }
   return response.json();
 };
 
@@ -28,6 +34,9 @@ const fetchPwnedPasswords = async (password) => {
     `https://api.pwnedpasswords.com/range/${passwordHash.slice(0, 5)}`,
     { headers: { Accept: "text/plain" } }
   );
+  if (!response.ok) {
+    throw Error(await response.text());
+  }
   const resultText = await response.text();
   const result = resultText.split("\n").find((result) => {
     return passwordHash.toLowerCase().endsWith(result.split(":")[0].toLowerCase());
