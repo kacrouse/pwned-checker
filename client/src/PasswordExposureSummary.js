@@ -1,7 +1,22 @@
-import React from 'react';
+import React from "react";
 
-export default function PasswordExposureSummary({pwnCount}) {
-  return (<p className="bp3-running-text">{passwordMessage(pwnCount)}</p>);
+export default function PasswordExposureSummary({ pwnCount }) {
+  return pwnCount > 0 ? (
+    <p className="bp3-running-text">
+      <span role="img" aria-label="flushed face">
+        😳
+      </span>
+      Probably best to stop using that one. It's been found in {pwnCount}{" "}
+      breaches.
+    </p>
+  ) : (
+    <p className="bp3-running-text">
+      <span role="img" aria-label="100%">
+        💯
+      </span>
+      Nice! This one hasn't been found in any breaches... yet.
+    </p>
+  );
 }
 
 function passwordMessage(pwnCount) {

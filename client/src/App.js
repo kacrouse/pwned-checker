@@ -23,7 +23,6 @@ function App() {
               <AccountExposureDetail
                 breaches={breaches}
                 pastes={pastes}
-                className="breachDetail"
               />
             </div>
           </div>
@@ -51,7 +50,7 @@ function App() {
 
   return (
     <main>
-      <h1>Has your data been exposed in any breaches? 😱</h1>
+      <h1>Has your data been exposed in any breaches? <span role="img" aria-label="scared face">😱</span></h1>
       <p>Type your email or password in the box below to find out. None of your info will be stored, promise.</p> 
       <div className="App">
         <div className="content">

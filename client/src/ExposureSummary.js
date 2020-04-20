@@ -7,6 +7,9 @@ export default function ExposureSummary({ breaches, pastes }) {
   return (
     <section className="bp3-running-text">
       <p>
+        <span role="img" aria-label="crying face">
+          😭
+        </span>
         This account has been found in {breaches.length}{" "}
         <TextWithTooltip
           text="breaches"

@@ -7,7 +7,7 @@ export default function AccountExposureDetail({ breaches, pastes }) {
   return (
     <section>
       <Button onClick={() => setIsOpen(!isOpen)}>
-        See Detail for Breaches
+        See Details
       </Button>
       <Collapse isOpen={isOpen}>
         <h3>Breaches</h3>
