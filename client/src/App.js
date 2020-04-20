@@ -19,7 +19,13 @@ function App() {
         setResultMarkup(
           <div>
             <ExposureSummary breaches={breaches} pastes={pastes} />
-            <AccountExposureDetail breaches={breaches} pastes={pastes} />
+            <div className="breachDetail">
+              <AccountExposureDetail
+                breaches={breaches}
+                pastes={pastes}
+                className="breachDetail"
+              />
+            </div>
           </div>
         );
       } catch (error) {
@@ -45,10 +51,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="input">
+      <div className="content">
         <SearchInput handleSearch={search} />
+        <div className="results">{resultMarkup}</div>
       </div>
-      <div>{resultMarkup}</div>
     </div>
   );
 }

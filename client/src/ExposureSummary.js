@@ -25,16 +25,14 @@ export default function ExposureSummary({ breaches, pastes }) {
         />
         .
       </p>
-      <div>
-        <h3>Exposed Information</h3>
-        {Object.entries(summarizeDataClasses(breaches)).map(
-          ([dataClass, count]) => (
-            <Tag key={dataClass} className="tag">
-              {dataClass} ({count})
-            </Tag>
-          )
-        )}
-      </div>
+      <h3>Exposed Information</h3>
+      {Object.entries(summarizeDataClasses(breaches)).map(
+        ([dataClass, count]) => (
+          <Tag key={dataClass} className="tag">
+            {dataClass} ({count})
+          </Tag>
+        )
+      )}
     </section>
   );
 }
