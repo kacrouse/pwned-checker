@@ -4,6 +4,16 @@ import { Tag } from "@blueprintjs/core";
 import TextWithTooltip from "./TextWithTooltip";
 
 export default function ExposureSummary({ breaches, pastes }) {
+  if (breaches.length === 0 && pastes.length === 0) {
+    return (
+      <p className="bp3-running-text">
+      <span role="img" aria-label="100%">
+        💯
+      </span>
+      Nice! This account hasn't been found in any breaches... yet.
+    </p>
+    );
+  }
   return (
     <section className="bp3-running-text">
       <p>

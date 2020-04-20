@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Button, Collapse } from "@blueprintjs/core";
 import Breach from "./Breach";
 
-export default function AccountExposureDetail({ breaches, pastes }) {
+export default function AccountExposureDetail({ breaches }) {
   const [isOpen, setIsOpen] = useState(false);
+  if (breaches.length === 0) {
+    return null;
+  }
   return (
     <section>
       <Button onClick={() => setIsOpen(!isOpen)}>
