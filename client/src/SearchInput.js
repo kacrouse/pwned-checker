@@ -31,7 +31,7 @@ export default function SearchInput({handleSearch}) {
         large={true}
         fill={true}
       />
-      <Button icon="arrow-right" onClick={() => handleSearch({searchType, searchValue})} />
+      <Button icon="arrow-right" disabled={!searchValue} onClick={() => handleSearch({searchType, searchValue})} />
     </ControlGroup>
   );
 }
