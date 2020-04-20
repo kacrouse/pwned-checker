@@ -4,9 +4,10 @@ import {
   ControlGroup,
   InputGroup,
   HTMLSelect,
+  Spinner
 } from "@blueprintjs/core";
 
-export default function SearchInput({ handleSearch }) {
+export default function SearchInput({ handleSearch, showSpinner }) {
   const [searchType, setSearchType] = useState("account");
   const [searchValue, setSearchValue] = useState("");
   const handleSearchTypeChange = (newValue) => {
@@ -30,6 +31,7 @@ export default function SearchInput({ handleSearch }) {
         onChange={(evt) => setSearchValue(evt.target.value)}
         large={true}
         fill={true}
+        rightElement={showSpinner ? <Spinner size={Spinner.SIZE_SMALL}/> : null}
       />
       <Button
         icon="arrow-right"

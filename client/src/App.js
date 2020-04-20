@@ -11,7 +11,9 @@ import { AppToaster } from "./AppToaster";
 
 function App() {
   const [resultMarkup, setResultMarkup] = useState(null);
+  const [showSpinner, setShowSpinner] = useState(false);
   const search = async ({ searchType, searchValue }) => {
+    setShowSpinner(true);
     if (searchType === "account") {
       try {
         const breaches = await fetchBreaches(searchValue);
@@ -46,6 +48,7 @@ function App() {
         });
       }
     }
+    setShowSpinner(false);
   };
 
   return (
@@ -54,7 +57,7 @@ function App() {
       <p>Type your email or password in the box below to find out. None of your info will be stored, promise.</p> 
       <div className="App">
         <div className="content">
-          <SearchInput handleSearch={search} />
+          <SearchInput handleSearch={search} showSpinner={showSpinner}/>
           <div className="results">{resultMarkup}</div>
         </div>
       </div>
