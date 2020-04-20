@@ -30,22 +30,14 @@ function App() {
           </div>
         );
       } catch (error) {
-        AppToaster.show({
-          message: `Error: ${error.message}`,
-          intent: Intent.DANGER,
-          icon: IconNames.WARNING_SIGN,
-        });
+        showError(error.message);
       }
     } else if (searchType === "password") {
       try {
         const pwnCount = await fetchPwnedPasswords(searchValue);
         setResultMarkup(<PasswordExposureSummary pwnCount={pwnCount} />);
       } catch (error) {
-        AppToaster.show({
-          message: `Error: ${error.message}`,
-          intent: Intent.DANGER,
-          icon: IconNames.WARNING_SIGN,
-        });
+        showError(error.message);
       }
     }
     setShowSpinner(false);
@@ -63,6 +55,14 @@ function App() {
       </div>
     </main>
   );
+}
+
+const showError = (message) => {
+  AppToaster.show({
+    message: `Error: ${message}`,
+    intent: Intent.DANGER,
+    icon: IconNames.WARNING_SIGN,
+  });
 }
 
 export default App;
