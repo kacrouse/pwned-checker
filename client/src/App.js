@@ -40,7 +40,7 @@ function App() {
         </div>
       );
     } else if (searchType === "password") {
-      let pwnCount = await fetchPwnedPasswords(searchValue);
+      let pwnCount;
       try {
         pwnCount = await fetchPwnedPasswords(searchValue);
       } catch (error) {
