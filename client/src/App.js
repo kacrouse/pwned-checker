@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import { fetchBreaches, fetchPastes, fetchPwnedPasswords } from "./api/hibp";
-import Breach from "./Breach";
-import Paste from "./Paste";
 import SearchInput from "./SearchInput";
 import ExposureSummary from "./ExposureSummary";
+import AccountExposureDetail from "./AccountExposureDetail";
 import { Intent } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import { AppToaster } from "./AppToaster";
@@ -37,24 +36,7 @@ function App() {
       setResultMarkup(
         <div>
           <ExposureSummary breaches={breaches} pastes={pastes} />
-          <section>
-            <ul className="bp3-list-unstyled">
-              {breaches.map((breach) => (
-                <li key={breach.Name}>
-                  <Breach props={breach} />
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section>
-            <ul className="bp3-list-unstyled">
-              {pastes.map((paste) => (
-                <li key={paste.Id}>
-                  <Paste props={paste} />
-                </li>
-              ))}
-            </ul>
-          </section>
+          <AccountExposureDetail breaches={breaches} pastes={pastes} />
         </div>
       );
     } else if (searchType === "password") {
