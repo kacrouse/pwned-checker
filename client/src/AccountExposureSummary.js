@@ -1,9 +1,9 @@
 import React from "react";
-import "./ExposureSummary.css";
+import "./AccountExposureSummary.css";
 import { Tag } from "@blueprintjs/core";
 import TextWithTooltip from "./TextWithTooltip";
 
-export default function ExposureSummary({ breaches, pastes }) {
+export default function AccountExposureSummary({ breaches, pastes }) {
   if (breaches.length === 0 && pastes.length === 0) {
     return (
       <p className="bp3-running-text">

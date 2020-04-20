@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./App.css";
 import { fetchBreaches, fetchPastes, fetchPwnedPasswords } from "./api/hibp";
 import SearchInput from "./SearchInput";
-import ExposureSummary from "./ExposureSummary";
-import PasswordExposureSummary from "./PasswordExposureSummary";
+import AccountExposureSummary from "./AccountExposureSummary";
 import AccountExposureDetail from "./AccountExposureDetail";
+import PasswordExposureSummary from "./PasswordExposureSummary";
 import { Intent } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import { AppToaster } from "./AppToaster";
@@ -18,7 +18,7 @@ function App() {
         const pastes = await fetchPastes(searchValue);
         setResultMarkup(
           <div>
-            <ExposureSummary breaches={breaches} pastes={pastes} />
+            <AccountExposureSummary breaches={breaches} pastes={pastes} />
             <div className="breachDetail">
               <AccountExposureDetail
                 breaches={breaches}
