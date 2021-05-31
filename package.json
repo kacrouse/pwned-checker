@@ -1,5 +1,5 @@
 {
-  "name": "go-nimbly-tech-challenge",
+  "name": "pwned-checker",
   "version": "1.0.0",
   "description": "An interface for the Have I Been Pwned API.",
   "scripts": {
